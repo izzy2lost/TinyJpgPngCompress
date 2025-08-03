@@ -36,6 +36,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: TinyJpgPngCompress-win-x64
-          path: ./TinyJpgPngCompress-win-x64.zip        with:
-          name: TinyJpgPngCompress-win-x64
-          path: ./TinyJpgPngCompress-win-x64.zip
+          path: ./TinyJpgPngCompress-win-x64.zip       
