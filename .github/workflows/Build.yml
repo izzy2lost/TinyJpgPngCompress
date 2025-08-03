@@ -1,4 +1,4 @@
-name: Build and Upload TinyJpgPngCompress (Self-contained, Zipped)
+name: Build and Upload TinyJpgPngCompress (Zipped)
 
 on:
   push:
@@ -26,8 +26,8 @@ jobs:
       - name: Build Release
         run: dotnet build TinyJpgPngCompress/TinyJpgPngCompress.csproj --configuration Release --no-restore
 
-      - name: Publish (Self-contained win-x64)
-        run: dotnet publish TinyJpgPngCompress/TinyJpgPngCompress.csproj --configuration Release --output ./publish --runtime win-x64 --self-contained true /p:PublishSingleFile=true /p:PublishTrimmed=true
+      - name: Publish (portable folder output)
+        run: dotnet publish TinyJpgPngCompress/TinyJpgPngCompress.csproj --configuration Release --output ./publish --runtime win-x64 --self-contained false
 
       - name: Zip Publish Output
         run: Compress-Archive -Path ./publish/* -DestinationPath ./TinyJpgPngCompress-win-x64.zip
@@ -35,5 +35,7 @@ jobs:
       - name: Upload Zipped Artifact
         uses: actions/upload-artifact@v4
         with:
+          name: TinyJpgPngCompress-win-x64
+          path: ./TinyJpgPngCompress-win-x64.zip        with:
           name: TinyJpgPngCompress-win-x64
           path: ./TinyJpgPngCompress-win-x64.zip
